@@ -17,17 +17,30 @@ namespace AsynchronousProgrammingDemo
         // async void should only be used for events !
         static async Task Main(string[] args)
         {
-            //await EasyExample.RunExampleAsync();
-            //Console.WriteLine();
 
-            //await ExampleWithReturnTypes.RunExampleAsync();
-            //Console.WriteLine();
+            MakeJoke();
+            Console.ReadKey();
+            Console.Clear();
 
-            //await ExampleTaskRun.RunExampleAsync();
-            //Console.WriteLine();
+            await EasyExample.RunExampleAsync();
+            Console.WriteLine();
+            Console.ReadKey();
+            Console.Clear();
 
-            //await TaskInformationExample.RunExampleAsync();
-            //Console.WriteLine();
+            await ExampleWithReturnTypes.RunExampleAsync();
+            Console.WriteLine();
+            Console.ReadKey();
+            Console.Clear();
+
+            await ExampleTaskRun.RunExampleAsync();
+            Console.WriteLine();
+            Console.ReadKey();
+            Console.Clear();
+
+            await TaskInformationExample.RunExampleAsync();
+            Console.WriteLine();
+            Console.ReadKey();
+            Console.Clear();
 
             SynchronousBreakfast syncBreakfast = new(
                 butterToasts: 3,
@@ -35,13 +48,38 @@ namespace AsynchronousProgrammingDemo
                 cupsOfCoffee: 2,
                 fastForwardCoeff: 10);
             Console.WriteLine();
+            Console.ReadKey();
 
             AsynchronousBreakfast asyncBreakfast = new(
                 butterToasts: 3,
                 boiledEggs: 2,
                 cupsOfCoffee: 2,
                 fastForwardCoeff: 10);
+            Console.ReadKey();
 
+        }
+
+        static void MakeJoke()
+        {
+            Console.WriteLine("But the question is");
+            Thread.Sleep(1000);
+
+            Task answerTask = Answer();
+
+            Console.WriteLine("if we couldn't also");
+            Thread.Sleep(1000);
+           
+            Console.WriteLine("do this asynchronously");
+
+            answerTask.Wait();
+        }
+
+        static async Task Answer()
+        {
+            Console.WriteLine("\t Of course");
+            await Task.Delay(2000);
+
+            Console.WriteLine("\t we can!");
         }
 
         #endregion Methods
