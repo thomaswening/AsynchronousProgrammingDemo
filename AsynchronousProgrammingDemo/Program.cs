@@ -26,8 +26,22 @@ namespace AsynchronousProgrammingDemo
             //await ExampleTaskRun.RunExampleAsync();
             //Console.WriteLine();
 
-            await TaskInformationExample.RunExampleAsync();
+            //await TaskInformationExample.RunExampleAsync();
+            //Console.WriteLine();
+
+            SynchronousBreakfast syncBreakfast = new(
+                butterToasts: 3,
+                boiledEggs: 2,
+                cupsOfCoffee: 2,
+                fastForwardCoeff: 10);
             Console.WriteLine();
+
+            AsynchronousBreakfast asyncBreakfast = new(
+                butterToasts: 3,
+                boiledEggs: 2,
+                cupsOfCoffee: 2,
+                fastForwardCoeff: 10);
+
         }
 
         #endregion Methods

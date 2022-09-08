@@ -92,7 +92,7 @@ namespace AsynchronousProgrammingDemo
 
         void MakeCupOfCoffee()
         {
-            Console.WriteLine("Time.Waiting for the coffee machine...");
+            Console.WriteLine("Waiting for the coffee machine...");
             Time.Wait(60, fastForwardCoeff);
             Console.WriteLine("One cup of coffee ready!");
         }

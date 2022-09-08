@@ -10,10 +10,10 @@ namespace AsynchronousProgrammingDemo
     {
         #region Fields
 
-        static int dayInSeconds = 24 * hourInSeconds;
-        static int hourInSeconds = 60 * minuteInSeconds;
+        static int dayInSeconds = 24 * 60 * 60;
+        static int hourInSeconds = 60 * 60;
         static int minuteInSeconds = 60;
-        static int yearInSeconds = 365 * dayInSeconds;
+        static int yearInSeconds = 365 * 24 * 60 * 60;
 
         #endregion Fields
 
@@ -50,7 +50,13 @@ namespace AsynchronousProgrammingDemo
             return sb.Length != 0 ? sb.ToString() : "0.00 s";
         }
 
-        public static void Wait(int seconds, double fastForwardCoeff=1.0)
+        public static async Task WaitAsync(int seconds, double fastForwardCoeff=1.0)
+        {
+            int milliseconds = (int)Math.Round(1000 * seconds / fastForwardCoeff);
+            await Task.Delay(milliseconds);
+        }
+
+        public static void Wait(int seconds, double fastForwardCoeff = 1.0)
         {
             int milliseconds = (int)Math.Round(1000 * seconds / fastForwardCoeff);
             Thread.Sleep(milliseconds);
