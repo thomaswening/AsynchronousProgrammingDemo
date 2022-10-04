@@ -27,6 +27,8 @@ namespace AsynchronousProgrammingDemo
             this.cupsOfCoffee = cupsOfCoffee;
             this.fastForwardCoeff = fastForwardCoeff;
 
+            // Constructors cannot be asynchronous!
+            // But we can run an asynchronous method in a synchronous method by using the method .Wait()
             MakeBreakfastAsync().Wait();
         }
 
