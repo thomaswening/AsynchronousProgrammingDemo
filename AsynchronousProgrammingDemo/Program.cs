@@ -17,46 +17,49 @@ namespace AsynchronousProgrammingDemo
         // async void should only be used for events !
         static async Task Main(string[] args)
         {
+            // To keep the code shorter, we put part of the asynchronous example methods into a list of delegates
+            // Never mind what they are, there is another demo for delegates
+            // Basically, this is just a list of methods which we can loop over and the execute
+            List<Func<Task>> asynchronousExampleMethods = new() 
+            { 
+                EasyExample.RunExampleAsync, 
+                ExampleWithReturnTypes.RunExampleAsync, 
+                ExampleTaskRun.RunExampleAsync, 
+                TaskInformationExample.RunExampleAsync 
+            };
 
             MakeJoke();
-            Console.ReadKey();
-            Console.Clear();
-
-            await EasyExample.RunExampleAsync();
-            Console.WriteLine();
-            Console.ReadKey();
-            Console.Clear();
-
-            await ExampleWithReturnTypes.RunExampleAsync();
-            Console.WriteLine();
-            Console.ReadKey();
-            Console.Clear();
-
-            await ExampleTaskRun.RunExampleAsync();
-            Console.WriteLine();
-            Console.ReadKey();
-            Console.Clear();
-
-            await TaskInformationExample.RunExampleAsync();
-            Console.WriteLine();
-            Console.ReadKey();
-            Console.Clear();
+            MoveOnToNextExample();
+            
+            // Here we loop over the list of methods that we declared above
+            foreach (Func<Task> asyncMethod in asynchronousExampleMethods)
+            {
+                await asyncMethod();
+                MoveOnToNextExample();
+            }
 
             SynchronousBreakfast syncBreakfast = new(
                 butterToasts: 3,
                 boiledEggs: 2,
                 cupsOfCoffee: 2,
                 fastForwardCoeff: 10);
-            Console.WriteLine();
-            Console.ReadKey();
+            MoveOnToNextExample();
 
             AsynchronousBreakfast asyncBreakfast = new(
                 butterToasts: 3,
                 boiledEggs: 2,
                 cupsOfCoffee: 2,
                 fastForwardCoeff: 10);
-            Console.ReadKey();
+            MoveOnToNextExample();
 
+        }
+
+        private static void MoveOnToNextExample()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Press ENTER");
+            Console.ReadKey();
+            Console.Clear();
         }
 
         static void MakeJoke()
